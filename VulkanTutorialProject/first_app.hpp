@@ -16,7 +16,12 @@ namespace lve {
 
 	private:
 		LveWindow lveWindow{ WIDTH, HEIGHT, "Vulkan YT Project" };
+		LveDevice lveDevice{lveWindow};
 		//ensure we are passing in the binary spv file
-		LvePipeline lvePipeline{ "simple_shader.vert.spv", "simple_shader.frag.spv" };
+		LvePipeline lvePipeline{
+			lveDevice,
+			"simple_shader.vert.spv",
+			"simple_shader.frag.spv",
+			LvePipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
 	};
 }
