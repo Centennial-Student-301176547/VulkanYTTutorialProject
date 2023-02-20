@@ -3,6 +3,7 @@
 #include "lve_pipeline.hpp"
 #include "lve_swap_chain.hpp"
 #include "lve_window.hpp"
+#include "lve_model.hpp"
 
 
 //std
@@ -28,6 +29,7 @@ namespace lve {
 		FirstApp& operator=(const FirstApp&) = delete;
 
 	private:
+		void loadModels();
 		void createPipelineLayout();
 		void createPipeline();
 		void createCommandBuffers();
@@ -38,5 +40,6 @@ namespace lve {
 		std::unique_ptr<LvePipeline> lvePipelinePtr;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
+		std::unique_ptr<LveModel> lveModelPtr;
 	};
 }

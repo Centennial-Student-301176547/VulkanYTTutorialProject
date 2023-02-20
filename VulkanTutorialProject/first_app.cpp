@@ -1,5 +1,6 @@
 #include "first_app.hpp"
 
+
 //std
 #include <stdexcept>
 #include <array>
@@ -7,6 +8,7 @@
 namespace lve {
 
 	FirstApp::FirstApp() {
+		loadModels();
 		createPipelineLayout();
 		createPipeline();
 		createCommandBuffers();
@@ -24,6 +26,16 @@ namespace lve {
 		}
 
 		vkDeviceWaitIdle(lveDevice.device());
+	}
+
+	void FirstApp::loadModels() {
+		std::vector<LveModel::Vertex> vertices{
+			{{0.0f, -0.5f}},
+			{{0.5f, 0.5f}},
+			{{-0.5f, 0.5f}}
+		};
+
+		lveModelPtr = std::make_unique<LveModel>(lveDevice, vertices);
 	}
 
 	void FirstApp::createPipelineLayout() {
@@ -70,7 +82,7 @@ namespace lve {
 			}
 
 			VkRenderPassBeginInfo renderPassInfo{};
-			renderPassInfo.sType = VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO;
+			renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
 			renderPassInfo.renderPass = lveSwapChain.getRenderPass();
 			renderPassInfo.framebuffer = lveSwapChain.getFrameBuffer(i);
 
@@ -85,7 +97,10 @@ namespace lve {
 
 			vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE); //third argument specifies no secondary commmand buffer will be used
 			lvePipelinePtr->bind(commandBuffers[i]);
-			vkCmdDraw(commandBuffers[i], 3, 1, 0, 0);
+			lveModelPtr->bind(commandBuffers[i]);
+			lveModelPtr->draw(commandBuffers[i]);
+			
+
 
 			vkCmdEndRenderPass(commandBuffers[i]);
 			if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
