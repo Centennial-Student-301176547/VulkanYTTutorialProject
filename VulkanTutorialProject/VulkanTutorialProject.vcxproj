@@ -97,10 +97,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <CustomBuildBeforeTargets>
     </CustomBuildBeforeTargets>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CustomBuildBeforeTargets>
     </CustomBuildBeforeTargets>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,6 +124,9 @@
       <AdditionalLibraryDirectories>;C:\GraphicsLibraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\GraphicsLibraries\Vulkan\Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);vulkan-1.lib;glfw3.lib</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call $(LocalDebuggerWorkingDirectory)compile.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -135,6 +146,9 @@
       <AdditionalLibraryDirectories>;C:\GraphicsLibraries\glfw-3.3.8.bin.WIN64\lib-vc2022;C:\GraphicsLibraries\Vulkan\Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);vulkan-1.lib;glfw3.lib</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call $(LocalDebuggerWorkingDirectory)compile.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -151,8 +165,7 @@
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies);vulkan-1.lib;glfw3.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>call $(LocalDebuggerWorkingDirectory)compile.bat</Command>
       <Message>updating shader files</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -160,7 +173,8 @@
       </Command>
     </CustomBuildStep>
     <PreLinkEvent>
-      <Command>call $(ProjectDir)compile.bat</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -182,8 +196,7 @@
       <AdditionalDependencies>vulkan-1.lib;glfw3.lib;%(AdditionalDependencies);vulkan-1.lib;glfw3.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>call $(LocalDebuggerWorkingDirectory)compile.bat</Command>
       <Message>updating shader files</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -191,7 +204,8 @@
       </Command>
     </CustomBuildStep>
     <PreLinkEvent>
-      <Command>call $(ProjectDir)compile.bat</Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

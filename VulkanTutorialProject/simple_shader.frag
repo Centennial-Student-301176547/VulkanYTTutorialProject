@@ -1,7 +1,7 @@
 #version 450
 
 //declares the location 
-//declares this value is an ouput with keyword 'out'
+//declares this value is an output with keyword 'out'
 layout (location = 0) out vec4 outColor;
 
 void main() {
