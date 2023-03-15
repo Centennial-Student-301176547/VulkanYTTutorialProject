@@ -18,9 +18,11 @@ namespace lve {
 	void LveWindow::initWindow() {
 		glfwInit(); //initalizes glfw library
 		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); //tells glfw not to create an OpenGL context (we're using vulkan)
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); //disables ability to resize the window after init, resize will be handled using a special function
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); //resize will be handled using a special function
 
 		windowPtr = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
+		glfwSetWindowUserPointer(windowPtr, this);
+		glfwSetFramebufferSizeCallback(windowPtr, framebufferResizeCallback);
 	}
 
 	bool LveWindow::shouldClose() {
@@ -38,4 +40,15 @@ namespace lve {
 		}
 	}
 
+	void LveWindow::framebufferResizeCallback(GLFWwindow *window, int width, int height) {
+		auto lveWindow = reinterpret_cast<LveWindow*>(glfwGetWindowUserPointer(window));
+		lveWindow->framebufferResized = true;
+		lveWindow->width = width;
+		lveWindow->height = height;
+
+	}
+
+	
+
 }
+
