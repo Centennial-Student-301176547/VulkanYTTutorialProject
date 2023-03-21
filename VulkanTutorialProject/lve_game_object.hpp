@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 #include "lve_model.hpp"
 
 //std

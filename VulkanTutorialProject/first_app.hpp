@@ -1,10 +1,9 @@
 #pragma once
-#include "lve_device.hpp"
-#include "lve_pipeline.hpp"
-#include "lve_swap_chain.hpp"
-#include "lve_window.hpp"
-#include "lve_game_object.hpp"
 
+#include "lve_device.hpp"
+#include "lve_game_object.hpp"
+#include "lve_renderer.hpp"
+#include "lve_window.hpp"
 
 //std
 #include <memory>
@@ -20,31 +19,21 @@ namespace lve {
 		static constexpr int WIDTH = 800;
 		static constexpr int HEIGHT = 600;
 
-		void run();
-
 		FirstApp();
 		~FirstApp();
 
 		FirstApp(const FirstApp&) = delete;
 		FirstApp& operator=(const FirstApp&) = delete;
 
+		void run();
+
 	private:
 		void loadGameObjects();
-		void createPipelineLayout();
-		void createPipeline();
-		void createCommandBuffers();
-		void freeCommandBuffers();
-		void drawFrame();
-		void recreateSwapChain();
-		void recordCommandBuffer(int imageIndex);
-		void renderGameObjects(VkCommandBuffer commandBuffer);
 
 		LveWindow lveWindow{ WIDTH, HEIGHT, "Vulkan YT Project" };
 		LveDevice lveDevice{lveWindow};
-		std::unique_ptr<LveSwapChain> lveSwapChainPtr;
-		std::unique_ptr<LvePipeline> lvePipelinePtr;
-		VkPipelineLayout pipelineLayout;
-		std::vector<VkCommandBuffer> commandBuffers;
+		LveRenderer lveRenderer{ lveWindow, lveDevice };
+
 		std::vector<LveGameObject> gameObjects;
 	};
 }
