@@ -37,6 +37,6 @@ namespace lve {
 
 		//order of declarations matter here:
 		std::unique_ptr<LveDescriptorPool> globalPool{};
-		std::vector<LveGameObject> gameObjects;
+		LveGameObject::Map gameObjects;
 	};
 }
