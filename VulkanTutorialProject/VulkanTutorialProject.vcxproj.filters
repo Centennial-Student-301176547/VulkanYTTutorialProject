@@ -124,5 +124,9 @@
     <None Include="simple_shader.vert.spv">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="shaders\simple_shader.frag" />
+    <None Include="shaders\simple_shader.frag.spv" />
+    <None Include="shaders\simple_shader.vert" />
+    <None Include="shaders\simple_shader.vert.spv" />
   </ItemGroup>
 </Project>
