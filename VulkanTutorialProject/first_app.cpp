@@ -119,6 +119,8 @@ namespace lve {
 
                 //render
 				lveRenderer.beginSwapChainRenderPass(commandBuffer);
+
+                // order here matters
 				simpleRenderSystem.renderGameObjects(frameInfo);
                 pointLightSystem.render(frameInfo);
 				lveRenderer.endSwapChainRenderPass(commandBuffer);
@@ -161,9 +163,8 @@ namespace lve {
 
         gameObjects.emplace(floor.getId(), std::move(floor));
 
-
-        auto pointLight = LveGameObject::makePointLight();
-        gameObjects.emplace(pointLight.getId(), std::move(pointLight));
+        //auto pointLight = LveGameObject::makePointLight();
+        //gameObjects.emplace(pointLight.getId(), std::move(pointLight));
 
         std::vector<glm::vec3> lightColors{
              {1.f, .1f, .1f},
