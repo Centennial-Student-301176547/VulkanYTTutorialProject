@@ -19,6 +19,9 @@
     <Filter Include="CMake">
       <UniqueIdentifier>{35dbc7e5-d3a5-4bbf-9eb4-7efa146603cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="systems">
+      <UniqueIdentifier>{2d4a7bec-750b-43ea-9d34-b90fc2d888c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lve_window.hpp">
@@ -45,9 +48,6 @@
     <ClInclude Include="lve_renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_render_system.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lve_camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,7 +67,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="point_light_system.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>systems</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_render_system.hpp">
+      <Filter>systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +98,6 @@
     <ClCompile Include="lve_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_render_system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lve_camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,7 +114,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="point_light_system.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>systems</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_render_system.cpp">
+      <Filter>systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,8 +145,12 @@
     <None Include="shaders\point_light.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\point_light.frag.spv" />
-    <None Include="shaders\point_light.vert.spv" />
+    <None Include="shaders\point_light.frag.spv">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\point_light.vert.spv">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt">
