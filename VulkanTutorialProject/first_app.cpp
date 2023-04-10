@@ -134,40 +134,40 @@ namespace lve {
 
 	void FirstApp::loadGameObjects() {
 
-        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "models/flat_vase.obj");
+        //std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "models/flat_vase.obj");
 
-        auto flatVase = LveGameObject::createGameObject();
-        flatVase.model = lveModel;
-        flatVase.transform.translation = {-0.5f, .5f, 0.f };
-        flatVase.transform.scale = glm::vec3(3.f, 1.5f, 3.f);
+        //auto flatVase = LveGameObject::createGameObject();
+        //flatVase.model = lveModel;
+        //flatVase.transform.translation = {-0.5f, .5f, 0.f };
+        //flatVase.transform.scale = glm::vec3(3.f, 1.5f, 3.f);
 
-        gameObjects.emplace(flatVase.getId(), std::move(flatVase));
-        
+        //gameObjects.emplace(flatVase.getId(), std::move(flatVase));
+        //
 
-        lveModel = LveModel::createModelFromFile(lveDevice, "models/smooth_vase.obj");
+        //lveModel = LveModel::createModelFromFile(lveDevice, "models/smooth_vase.obj");
 
-        auto smoothVase = LveGameObject::createGameObject();
-        smoothVase.model = lveModel;
-        smoothVase.transform.translation = { .5f, .5f, 0.f };
-        smoothVase.transform.scale = glm::vec3(3.f, 1.5f, 3.f);
+        //auto smoothVase = LveGameObject::createGameObject();
+        //smoothVase.model = lveModel;
+        //smoothVase.transform.translation = { .5f, .5f, 0.f };
+        //smoothVase.transform.scale = glm::vec3(3.f, 1.5f, 3.f);
 
-        gameObjects.emplace(smoothVase.getId(), std::move(smoothVase));
+        //gameObjects.emplace(smoothVase.getId(), std::move(smoothVase));
 
 
-        lveModel = LveModel::createModelFromFile(lveDevice, "models/quad.obj");
+        //lveModel = LveModel::createModelFromFile(lveDevice, "models/quad.obj");
 
-        auto floor = LveGameObject::createGameObject();
-        floor.model = lveModel;
-        floor.transform.translation = { 0.f, .5f, 0.f };
-        floor.transform.scale = glm::vec3(3.f, 1.f, 3.f);
+        //auto floor = LveGameObject::createGameObject();
+        //floor.model = lveModel;
+        //floor.transform.translation = { 0.f, .5f, 0.f };
+        //floor.transform.scale = glm::vec3(3.f, 1.f, 3.f);
 
-        gameObjects.emplace(floor.getId(), std::move(floor));
+        //gameObjects.emplace(floor.getId(), std::move(floor));
 
-        lveModel = LveModel::createModelFromFile(lveDevice, "models/arrow.obj");
+        std::shared_ptr<LveModel> lveModel = LveModel::createModelFromFile(lveDevice, "models/arrow.obj");
         auto arrow = LveGameObject::createGameObject();
         arrow.model = lveModel;
         arrow.color = { 1.f, .1f, .1f };
-        arrow.transform.translation = { 0.f, .5f, 0.f };
+        arrow.transform.translation = { -.05f, 0.f, 0.f };
         arrow.transform.scale = glm::vec3(.2f, .3f, .2f);       
        
         gameObjects.emplace(arrow.getId(), std::move(arrow));        
@@ -189,10 +189,11 @@ namespace lve {
         for (int i = 0; i < lightColors.size(); i++) {
             auto pointLight = LveGameObject::makePointLight(0.2f);
             pointLight.color = lightColors[i];
+            pointLight.transform.rotation = glm::vec3(90.f, 0.f, 0.f);
             auto rotateLight = glm::rotate(
                 glm::mat4(1.f),
                 (i * glm::two_pi<float>()) / lightColors.size(),
-                { 0.f, -1.f, 0.f });
+                { 0.f, 0.f, 1.f });
             pointLight.transform.translation = glm::vec3(rotateLight * glm::vec4(-1.f, -1.f, -1.f, 1.f));
             gameObjects.emplace(pointLight.getId(), std::move(pointLight));
         }

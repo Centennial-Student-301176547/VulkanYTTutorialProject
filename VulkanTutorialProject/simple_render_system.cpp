@@ -77,12 +77,16 @@ namespace lve {
             0,
             nullptr);
 
+        auto rotateObject = glm::rotate(glm::mat4(50.f), frameInfo.frameTime, { -1.f, -1.f, 1.f });
+
         for (auto& kv : frameInfo.gameObjects) {
             auto& obj = kv.second;
             if (obj.model == nullptr) continue;
             SimplePushConstantData push{};
             push.modelMatrix = obj.transform.mat4();
             push.normalMatrix = obj.transform.normalMatrix();
+
+            obj.transform.rotation += glm::vec3(0.f, 0.f, .01f);
 
             vkCmdPushConstants(
                 frameInfo.commandBuffer,
