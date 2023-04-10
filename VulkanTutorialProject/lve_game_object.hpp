@@ -23,7 +23,7 @@ namespace lve {
 	};
 
 	struct PointLightComponent {
-		float lightIntensity = 1.0f;
+		float lightIntensity = 5.0f;
 	};
 
 	class LveGameObject {

@@ -163,8 +163,19 @@ namespace lve {
 
         gameObjects.emplace(floor.getId(), std::move(floor));
 
-        //auto pointLight = LveGameObject::makePointLight();
-        //gameObjects.emplace(pointLight.getId(), std::move(pointLight));
+        lveModel = LveModel::createModelFromFile(lveDevice, "models/arrow.obj");
+        auto arrow = LveGameObject::createGameObject();
+        arrow.model = lveModel;
+        arrow.color = { 1.f, .1f, .1f };
+        arrow.transform.translation = { 0.f, .5f, 0.f };
+        arrow.transform.scale = glm::vec3(.2f, .3f, .2f);       
+       
+        gameObjects.emplace(arrow.getId(), std::move(arrow));        
+
+
+       /* auto pointLight = LveGameObject::makePointLight();
+        pointLight.transform.translation = { 0.f, -1.f, 1.f };
+        gameObjects.emplace(pointLight.getId(), std::move(pointLight));*/
 
         std::vector<glm::vec3> lightColors{
              {1.f, .1f, .1f},
@@ -172,7 +183,7 @@ namespace lve {
              {.1f, 1.f, .1f},
              {1.f, 1.f, .1f},
              {.1f, 1.f, 1.f},
-             {1.f, 1.f, 1.f}  //
+             {1.f, 1.f, 1.f}  
         };
 
         for (int i = 0; i < lightColors.size(); i++) {

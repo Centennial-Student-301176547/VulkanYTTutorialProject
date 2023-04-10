@@ -34,6 +34,12 @@ namespace lve {
         if (glfwGetKey(window, keys.moveUp) == GLFW_PRESS) moveDir += upDir;
         if (glfwGetKey(window, keys.moveDown) == GLFW_PRESS) moveDir -= upDir;
 
+        
+        //add gravity to player camera
+        if (gameObject.transform.translation.y < 0 && glfwGetKey(window, keys.moveDown) != GLFW_PRESS) {
+            moveDir -= glm::vec3{ 0.f, gameObject.transform.translation.y / 100, 0.f };
+        }
+
         if (glm::dot(moveDir, moveDir) > std::numeric_limits<float>::epsilon()) {
             gameObject.transform.translation += moveSpeed * dt * glm::normalize(moveDir);
         }
